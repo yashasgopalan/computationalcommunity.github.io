@@ -2,19 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>6-Panel Shape Simulation</title>
-    <style>
-      html, body { margin: 0; padding: 0; background: #0b0b0b; }
-      /* Keeps canvas centered */
-      body { display: grid; place-items: start center; min-height: 100vh; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Computational Community</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- p5.js -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
   </head>
-  <body>
-    <!-- p5.js from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 
-    <!-- your sketch -->
+  <body>
+    <header class="topbar">
+      <div class="topbar__row">
+        <div class="titleblock">
+          <h1>People Watching in a Computational Community</h1>
+          <p class="subtitle">Six scenarios with identical rules but different starting conditions.</p>
+        </div>
+
+        <details class="rules" open>
+          <summary>Rules</summary>
+          <ol>
+            <li>Each agent is a polygon with 3–8 sides, a color, and a fixed speed.</li>
+            <li>Agents move continuously and wrap around panel boundaries.</li>
+            <li>Initial colors are random and contrasting within influence radius.</li>
+            <li>
+              When two agents come within clash radius:
+              <ul>
+                <li>If equal sides: direction aligns and both take local average color.</li>
+                <li>If different sides: Larger loses one side, smaller gains one side. Smaller takes larger’s color and is redirected along an adjacent edge.</li>
+              </ul>
+            </li>
+            <li>Cooldown prevents immediate repeat clashes.</li>
+            <li>Click inside a panel to add a random 3–8 sided agent at the cursor.</li>
+          </ol>
+        </details>
+
+        <div class="controls">
+          <button id="restart-btn" class="btn-primary" onclick="restartSimulations()" aria-label="Restart Simulations">Restart Simulations</button>
+        </div>
+
+      </div>
+    </header>
+
+    <main id="stage">
+      <div id="sketch-holder"></div>
+    </main>
+
     <script src="sketch.js"></script>
   </body>
 </html>
